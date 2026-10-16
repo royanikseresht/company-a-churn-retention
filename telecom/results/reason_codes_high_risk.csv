@@ -1,0 +1,7 @@
+reason,customers,share,actual_churn_rate,avg_monthly_rev,expected_monthly_rev_at_risk,action
+Usage drop,9825,0.49125,0.8013231552162849,44.76938193384855,343186.1919067505,Usage check-in + personalised bonus
+Tenure & contract,4195,0.20975,0.7065554231227652,61.315334922526816,182056.7797720165,Renewal offer before contract end
+Handset age & device,3070,0.1535,0.6833876221498372,49.610075190013035,105487.85983882415,Early handset-upgrade offer
+Price & overage,2503,0.12515,0.6995605273671595,86.54109635104675,153140.09036214306,Plan right-sizing (end overage bills)
+Network quality,403,0.02015,0.6550868486352357,61.36617866004963,17122.68210418825,Network fix + service credit
+Customer care,4,0.0002,0.25,30.701875,84.00254683945333,Priority callback to resolve the issue
