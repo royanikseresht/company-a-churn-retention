@@ -1,0 +1,22 @@
+# Course data: not for redistribution
+Client.csv
+Record.csv
+data/*.csv
+telecom/*.csv
+
+# Course handouts
+*.docx
+*.xlsx
+tutorial.ipynb
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
