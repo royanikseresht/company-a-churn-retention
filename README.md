@@ -137,10 +137,6 @@ The Company A dataset (`Client.csv`, `Record.csv`) was provided to course partic
 7. Twilio (22 Nov 2025). *How much does call center outsourcing cost?* https://www.twilio.com/en-us/blog/call-center-services-pricing
 8. Saerens, M., Latinne, P., & Decaestecker, C. (2002). *Adjusting the outputs of a classifier to new a priori probabilities: a simple procedure.* Neural Computation, 14(1), 21–41. https://mlanthology.org/neco/2002/saerens2002neco-adjusting
 
-## AI assistance
-
-This project was built with help from Claude (Anthropic), a generative AI assistant, for the analysis code, research and slide drafting, as disclosed in the course submission. All results come from running `telecom_analysis.py` locally on the course data.
-
 ## License
 
 The code is released under the [MIT License](LICENSE). The dataset and course materials are not covered by this license.
