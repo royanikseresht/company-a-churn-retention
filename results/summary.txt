@@ -1,0 +1,263 @@
+==============================================================================
+COMPANY A - CHURN ANALYSIS SUMMARY
+==============================================================================
+Run date: 2026-10-16 16:54   FAST mode: False
+
+1. DATA OVERVIEW
+  Client.csv 100,000 rows x 50 cols | Record.csv 100,000 rows x 51 cols
+  Merged on Customer_ID: 100,000 customers x 100 columns (77 numeric, 21 text)
+  Churn rate in data: 49.6%  (49,562 churners / 50,438 stayers)
+  Avg monthly revenue per customer (rev_Mean): mean $58.72, median $48.20
+  ARPU churners $58.21 vs stayers $59.22
+  Monthly revenue of churners (sum rev_Mean): $2.88M = 49.1% of total monthly revenue $5.87M
+  Tenure (months): min 6, median 16, max 61
+
+  Data quality notes:
+    rev_Mean: 5 rows with negative revenue (billing adjustments)
+    eqpdays: 133 rows with negative equipment age
+    mou_Mean: 1,615 rows with zero minutes of use
+
+2. MISSING VALUES (top 15, % of customers)
+  numbcars                49.4%
+  dwllsize                38.3%
+  HHstatin                37.9%
+  ownrent                 33.7%
+  dwlltype                31.9%
+  lor                     30.2%
+  income                  25.4%
+  adults                  23.0%
+  infobase                22.1%
+  hnd_webcap              10.2%
+  prizm_social_one         7.4%
+  avg6qty                  2.8%
+  avg6rev                  2.8%
+  avg6mou                  2.8%
+  kid6_10                  1.7%
+  Columns with any missing values: 43 of 99
+
+3. CHURN RATE BY CANDIDATE DRIVER  (rate | customers | avg monthly revenue)
+  Handset age (eqpdays)
+    < 6 mo                     41.7% |  18,327 | $ 78.66
+    6-12 mo                    47.0% |  36,356 | $ 59.29
+    12-18 mo                   53.7% |  21,138 | $ 54.10
+    18-24 mo                   54.0% |  13,367 | $ 49.40
+    > 24 mo                    57.9% |  10,811 | $ 43.22
+    -> spread between highest and lowest group: 16.2 percentage points
+  Handset age month by month (churn rate | customers): 6m 38%, 7m 38%, 8m 37%, 9m 37%, 10m 60%, 11m 63%, 12m 56%, 13m 54%, 14m 53%, 15m 52%
+  Tenure month by month (churn rate): 6m 38%, 7m 33%, 8m 31%, 9m 29%, 10m 40%, 11m 65%, 12m 62%, 13m 55%, 14m 53%, 15m 52%
+  Tenure in months
+    6-9                        31.8% |  14,068 | $ 61.32
+    10-12                      58.2% |  18,375 | $ 58.22
+    13-15                      53.8% |  14,038 | $ 59.03
+    16-18                      51.2% |  10,125 | $ 60.66
+    19-24                      50.6% |  18,705 | $ 57.28
+    25-36                      50.0% |  19,024 | $ 56.86
+    37+                        47.3% |   5,665 | $ 59.98
+    -> spread between highest and lowest group: 26.4 percentage points
+  Usage change (change_mou vs 3-month average)
+    Fell > 50%                 64.0% |  12,373 | $ 50.53
+    Fell 20-50%                49.9% |  19,609 | $ 57.55
+    Stable                     44.5% |  39,991 | $ 63.05
+    Rose 20-50%                45.6% |  13,233 | $ 61.61
+    Rose > 50%                 49.7% |  12,186 | $ 56.70
+    -> spread between highest and lowest group: 19.5 percentage points
+  Customer-care calls per month
+    None                       51.8% |  55,692 | $ 49.13
+    0-1                        49.4% |  16,100 | $ 62.96
+    1-3                        46.2% |  12,186 | $ 69.42
+    3+                         44.7% |  16,022 | $ 79.43
+    -> spread between highest and lowest group: 7.1 percentage points
+  Dropped or blocked calls per month
+    0-2                        52.4% |  28,703 | $ 38.26
+    2-5                        48.3% |  20,114 | $ 46.79
+    5-10                       48.6% |  20,413 | $ 58.46
+    10-20                      48.3% |  17,500 | $ 74.42
+    20+                        48.4% |  13,270 | $100.46
+    -> spread between highest and lowest group: 4.2 percentage points
+  Overage charges per month (ovrrev_Mean)
+    No overage                 49.0% |  42,552 | $ 42.48
+    $0-10                      48.0% |  26,932 | $ 45.70
+    $10-30                     50.5% |  16,299 | $ 65.28
+    $30+                       52.6% |  13,860 | $126.15
+    -> spread between highest and lowest group: 4.6 percentage points
+  Handset price
+    < $40                      57.5% |  26,751 | $ 48.01
+    $40-80                     50.7% |  18,257 | $ 55.61
+    $80-130                    46.4% |  21,147 | $ 65.17
+    $130+                      44.9% |  32,998 | $ 64.59
+    -> spread between highest and lowest group: 12.6 percentage points
+  Monthly revenue band (rev_Mean)
+    < $30                      53.8% |  15,516 | $ 20.11
+    $30-50                     48.9% |  37,328 | $ 38.10
+    $50-75                     48.9% |  24,740 | $ 59.63
+    $75-100                    47.9% |  11,370 | $ 85.61
+    $100+                      49.2% |  11,046 | $152.57
+    -> spread between highest and lowest group: 5.9 percentage points
+    share of churners vs share of churners' revenue:
+    < $30                      16.8% of churners |   5.8% of lost revenue
+    $30-50                     36.8% of churners |  24.1% of lost revenue
+    $50-75                     24.4% of churners |  25.0% of lost revenue
+    $75-100                    11.0% of churners |  16.1% of lost revenue
+    $100+                      11.0% of churners |  29.0% of lost revenue
+
+  Categorical segments with the biggest churn gaps (groups with >= 1,000 customers):
+    crclscod           highest B 52.4% | lowest EA 41.0%
+    area               highest CALIFORNIA NORTH AREA 52.1% | lowest MIDWEST AREA 45.9%
+    hnd_webcap         highest Missing 59.2% | lowest WCMB 47.1%
+    refurb_new         highest R 53.4% | lowest N 48.9%
+    asl_flag           highest N 51.0% | lowest Y 40.9%
+    new_cell           highest U 49.7% | lowest Y 49.0%
+    prizm_social_one   highest R 52.7% | lowest U 48.5%
+    dualband           highest N 53.7% | lowest T 42.2%
+
+4. LEAKAGE CHECK - how well does each single numeric column separate churners? (AUC, 0.5 = useless)
+  eqpdays               0.574
+  hnd_price             0.558
+  totmrc_Mean           0.542
+  mou_opkv_Mean         0.541
+  mou_cvce_Mean         0.541
+  mou_Mean              0.539
+  iwylis_vce_Mean       0.536
+  mouiwylisv_Mean       0.536
+  complete_Mean         0.536
+  opk_vce_Mean          0.536
+  -> no single column is suspiciously predictive (all < 0.80): no obvious target leakage
+
+5. FEATURES: 115 total = 77 numeric + 20 categorical + 18 engineered
+  Engineered: eqp_vs_tenure, usage_trend_mou, usage_trend_rev, mou_recent_vs_life, rev_recent_vs_life, qty_recent_vs_life, mou_6m_vs_life, overage_share, rev_per_min, mrc_share, drop_rate, block_rate, complete_rate, unanswered_rate, care_per_100min, hnd_price_vs_rev, phones_per_year, subs_ratio
+  Excluded for fairness (never used by any model): ethnic
+
+6. MODEL COMPARISON  (5-fold stratified cross-validation, out-of-fold predictions, seed 42)
+  Metric: ROC-AUC = how well the model ranks churners above stayers (0.5 random, 1.0 perfect).
+  Accuracy and F1 use a 0.5 threshold (classes are ~balanced in this data).
+  Model                              AUC   (+/-)     Acc      F1   Top10%   Top20%
+  Logistic Regression             0.6421  0.0017  0.6027  0.5943    14.1%    26.7%
+  Random Forest                   0.6893  0.0030  0.6334  0.6345    15.8%    29.2%
+  XGBoost (tutorial settings)     0.7027  0.0019  0.6444  0.6421    16.4%    30.0%
+  LightGBM                        0.7064  0.0020  0.6469  0.6449    16.5%    30.2%
+  (Top10%/Top20% = share of all churners found when contacting the 10%/20% highest-risk customers;
+   a random list finds 10%/20%.)
+  Best model: LightGBM (AUC 0.7064, accuracy 0.6469)
+  Tutorial baseline for reference: XGBoost on label-encoded raw data, 70/30 split, accuracy 0.6368
+  LightGBM trees per fold (early stopping): [636, 640, 913, 545, 744]
+  Precision in top 20%: 74.8% of contacted customers are real churners (vs 49.6% at random) -> lift 1.51x
+  Fairness check: LightGBM AUC WITH ethnic = 0.7079 vs WITHOUT = 0.7064 (difference +0.0015)
+
+7. WHAT DRIVES CHURN - mean |SHAP| of LightGBM (out-of-fold), top 20 features
+  usage_trend_mou         0.1810   [Usage drop]  Minutes trend (% vs 3-mo avg)
+  eqpdays                 0.1803   [Handset age & device]  Handset age (days)
+  months                  0.1563   [Tenure & contract]  Months in service
+  crclscod                0.0826   [Customer profile]  Credit class
+  area                    0.0779   [Customer profile]  Geographic area
+  lor                     0.0733   [Customer profile]  Length of residence
+  totmrc_Mean             0.0660   [Price & overage]  Monthly recurring charge
+  mou_recent_vs_life      0.0622   [Usage drop]  Recent vs lifetime minutes
+  eqp_vs_tenure           0.0565   [Handset age & device]  Handset age vs tenure
+  mou_6m_vs_life          0.0562   [Usage drop]  6-month vs lifetime minutes
+  mrc_share               0.0538   [Price & overage]  Recurring-charge share of bill
+  change_mou              0.0530   [Usage drop]  Change in minutes vs 3-mo avg
+  qty_recent_vs_life      0.0485   [Usage drop]  Recent vs lifetime calls
+  hnd_price_vs_rev        0.0482   [Handset age & device]  Handset price vs monthly bill
+  hnd_price               0.0480   [Handset age & device]  Handset price
+  phones_per_year         0.0441   [Handset age & device]  Handsets per year
+  subs_ratio              0.0431   [Tenure & contract]  Active share of subscribers
+  usage_trend_rev         0.0410   [Usage drop]  Revenue trend (% vs 3-mo avg)
+  drop_rate               0.0392   [Network quality]  Dropped-call rate
+  prizm_social_one        0.0353   [Customer profile]  Social group
+  Importance by driver family (share of total):
+  Usage drop               19.4%   (actionable)
+  Handset age & device     17.2%   (actionable)
+  Customer profile         16.9%
+  Usage level              15.0%
+  Price & overage          13.8%   (actionable)
+  Tenure & contract         9.8%   (actionable)
+  Network quality           6.5%   (actionable)
+  Customer care             1.4%   (actionable)
+  Strongest actionable numeric drivers (see fig12): usage_trend_mou, eqpdays, months
+
+8. REASON CODES - main actionable driver for each customer in the top 20% risk group (20,000 customers, actual churn rate 74.8%)
+  Main reason              Customers   Share   Churn     ARPU  Exp. rev at risk/mo   Action
+  Usage drop                   9,825   49.1%   80.1%    44.77                $343K   Usage check-in + personalised bonus
+  Tenure & contract            4,195   21.0%   70.7%    61.32                $182K   Renewal offer before contract end
+  Handset age & device         3,070   15.3%   68.3%    49.61                $105K   Early handset-upgrade offer
+  Price & overage              2,503   12.5%   70.0%    86.54                $153K   Plan right-sizing (end overage bills)
+  Network quality                403    2.0%   65.5%    61.37                 $17K   Network fix + service credit
+  Customer care                    4    0.0%   25.0%    30.70                  $84   Priority callback to resolve the issue
+
+9. BUSINESS IMPACT SIMULATION
+  Assumptions (EDIT in the script, cite sources on the slide):
+    BASE_CHURN_RATE = 0.02
+    CONTACT_COST    = 5.0
+    INCENTIVE_COST  = 60.0
+    SAVE_RATE       = 0.25
+    TAKEUP_LOYAL    = 0.1
+    HORIZON_MONTHS  = 12
+    CUSTOMER_BASE   = 100000
+  Logic: contact customers from the top of the list. Saved customers = SAVE_RATE x churners reached.
+  Revenue kept = saved customers x their monthly bill x HORIZON_MONTHS.
+  Cost = CONTACT_COST x contacted + INCENTIVE_COST x (saved customers + TAKEUP_LOYAL x loyal customers contacted).
+  Sources: churn benchmarks - AT&T 2Q26 release, TelecomLead (29 Sep 2026), Recon Analytics (27 Jul 2026);
+           contact cost - Twilio call-centre pricing (Nov 2025); churn-reduction cross-check - McKinsey (2017).
+
+  Scenario: REFERENCE ONLY - churn rate as in the dataset (~50%, unrealistic)  (per 100,000 customers, one campaign)
+    churners in base: 49,562
+    Strategy                                 Best share  Contacted   Saved  Revenue kept      Cost       Net    ROI
+    Random list (no model)                        50.0%     50,000   6,195        $4.32M     $773K    $3.55M   459%
+    Model: highest churn risk first               50.0%     50,000   8,034        $5.42M     $839K    $4.58M   546%
+    Model: highest revenue at risk first          50.0%     50,000   7,148        $6.61M     $807K    $5.80M   718%
+    (search limited to contacting at most 50% of customers)
+    -> Recommended: 'Model: highest revenue at risk first', contact top 50.0%: net $5.80M per campaign vs $3.55M for a random list of the same size
+    Detail for the recommended strategy:
+       Share  Contacted  Churners reached   Saved  Revenue kept      Cost       Net
+        2.0%      2,000             1,264     316         $872K      $33K     $838K
+        5.0%      5,000             3,043     761        $1.60M      $82K    $1.52M
+       10.0%     10,000             5,989   1,497        $2.52M     $164K    $2.36M
+       20.0%     20,000            11,921   2,980        $3.90M     $327K    $3.58M
+       30.0%     30,000            17,564   4,391        $4.97M     $488K    $4.48M
+       50.0%     50,000            28,590   7,148        $6.61M     $807K    $5.80M
+
+  Scenario: realistic churn rate 2.0% (probabilities re-calibrated)  (per 100,000 customers, one campaign)
+    churners in base: 2,000
+    Strategy                                 Best share  Contacted   Saved  Revenue kept      Cost       Net    ROI
+    Random list (no model)                         0.5%        500       2           $2K       $6K      -$4K   -69%
+    Model: highest churn risk first                2.0%      2,000      54          $31K      $24K       $7K    28%
+    Model: highest revenue at risk first           3.5%      3,501      50          $68K      $40K      $28K    70%
+    (search limited to contacting at most 50% of customers)
+    -> Recommended: 'Model: highest revenue at risk first', contact top 3.5%: net $28K per campaign vs -$27K for a random list of the same size
+    Detail for the recommended strategy:
+       Share  Contacted  Churners reached   Saved  Revenue kept      Cost       Net
+        2.0%      2,001               130      33          $49K      $23K      $26K
+        3.5%      3,501               200      50          $68K      $40K      $28K
+        5.0%      5,001               264      66          $85K      $57K      $27K
+       10.0%     10,002               452     113         $128K     $114K      $14K
+       20.0%     20,001               756     189         $188K     $227K     -$39K
+       30.0%     30,002             1,016     254         $231K     $339K    -$108K
+    Share of ALL churn prevented: 2.5% (McKinsey cross-check: analytics-led programmes cut churn by up to 15%)
+
+  Sensitivity (realistic rate 2.0%): best net benefit per campaign
+                       offer $30     offer $60     offer $90
+    save 15%               $13K           $8K           $5K
+    save 25%               $47K          $28K          $19K
+    save 35%              $100K          $65K          $43K
+    (negative = no profitable targeting share exists under those assumptions)
+
+  Sensitivity: best net benefit per campaign by real churn rate x save rate (offer $60)
+                        save 15%      save 25%      save 35%
+    churn 1%                $280           $5K          $12K
+    churn 2%                 $8K          $28K          $65K
+    churn 3%                $22K          $75K         $157K
+
+10. EXECUTIVE SNAPSHOT (numbers for the title / summary slide)
+  Customers analysed: 100,000 | churn rate in data: 49.6%
+  Monthly revenue of churners: $2.88M (49.1% of monthly revenue)
+  Best model: LightGBM, ROC-AUC 0.706, accuracy 0.647
+  Top 10% highest-risk customers contain 16% of churners (lift 1.65x vs random)
+  Top driver families: Usage drop 19%, Handset age & device 17%, Customer profile 17%
+  Largest reason group in high-risk segment: Usage drop (49%) -> Usage check-in + personalised bonus
+  Fairness: removing ethnic changes AUC by -0.0015
+  ROI at 2.0% monthly churn: 'Model: highest revenue at risk first', contact top 3.5% (3,501 customers): net $28K per monthly campaign per 100,000 customers
+    revenue kept $68K, campaign cost $40K, ROI 70%, customers saved 50
+    if repeated every month: ~$338K per year per 100,000 customers; ~$3.38M per year for a 1-million-customer operator (illustrative)
+
+==============================================================================
+Finished in 308s. Figures and tables are in: /Users/roya/Downloads/Final Assignment/telecom/results
